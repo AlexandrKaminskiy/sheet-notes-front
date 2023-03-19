@@ -8,25 +8,6 @@ import {Observable} from "rxjs";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'sheet-notes-front';
-  name = '';
-  instrument = '';
-  dateFrom : Date;
-  dateTo : Date;
-  bpm: number
-  complexity: number
-  durationFrom: number
-  durationTo: number
-
-  notes$: Observable<INote[]>
-
-  constructor(private noteService: NotesService) {
-  }
-
-
-  ngOnInit(): void {
-    this.notes$ = this.noteService.getAll();
-  }
+export class AppComponent {
 
 }

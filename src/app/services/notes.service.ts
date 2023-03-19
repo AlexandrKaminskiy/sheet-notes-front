@@ -13,4 +13,8 @@ export class NotesService {
   getAll(): Observable<INote[]> {
     return this.http.get<INote[]>('http://localhost:3000');
   }
+
+  add() {
+
+  }
 }
