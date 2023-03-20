@@ -44,6 +44,8 @@ export class AddComponent implements OnInit{
 
     this.noteService.add(formData).subscribe(() => {
       this.router.navigate(['']);
+    }, error => {
+      this.router.navigate(['error'])
     })
 
   }

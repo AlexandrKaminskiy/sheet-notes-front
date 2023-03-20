@@ -31,17 +31,23 @@ export class UpdateComponent implements OnInit {
 
   submit() {
     let formData = new FormData();
+    console.log(this.file)
     formData.append('name',  this.form.controls.name.value )
     formData.append('bpm',  this.form.controls.bpm.value as string )
     formData.append('complexity',  this.form.controls.complexity.value as string)
     formData.append('duration',  this.form.controls.duration.value as string)
     formData.append('instrument',  this.form.controls.instrument.value as string )
     formData.append('description',  this.form.controls.description.value as string )
+    if (this.file !== undefined) {
+      formData.append('file', this.file.name )
+    }
     formData.append('sheet',  this.file)
 
 
     this.noteService.update(formData, this.id).subscribe(() => {
       this.router.navigate(['']);
+    }, error => {
+      this.router.navigate(['error'])
     })
   }
 
@@ -65,6 +71,18 @@ export class UpdateComponent implements OnInit {
     })
   }
 
+  download($event: any) {
+    this.file = $event.target.files[0];
+  }
+
+  delete() {
+    this.noteService.delete(this.id).subscribe((resp) => {
+
+    },error => {
+      this.router.navigate(['error'])
+    });
+    this.router.navigate(['']);
+  }
 }
 
 

@@ -7,9 +7,9 @@
 <input type="number" placeholder="Duration to" [(ngModel)]="durationTo" />
 
 <table class="table table-bordered">
+
   <thead class="table-light" style="background-color: transparent;">
   <tr>
-    <td>№</td>
     <td>Name</td>
     <td>Bpm</td>
     <td>Complexity</td>
@@ -18,16 +18,21 @@
     <td>Instrument</td>
     <td>Edit</td>
   </tr>
-  </thead>
-  <tbody>
+  </thead >
+  <tbody class="table-light">
     <div *ngIf="notes$ | async as notes">
-      <app-notes
-        *ngFor="let note of notes | filterNotes: name : instrument : dateFrom : dateTo : complexity :  durationFrom : durationTo;
-           let i = index" [note]="note">
-      </app-notes>
+      <tr *ngFor="let note of notes | filterNotes: name : instrument : dateFrom : dateTo : complexity : durationFrom : durationTo;"
+        routerLink="note/{{note.id}}">
+        <td> {{ note.name }} </td>
+        <td> {{ note.bpm }} </td>
+        <td> {{ note.complexity }} </td>
+        <td> {{ note.duration }} </td>
+        <td> {{ note.creation_date }} </td>
+        <td> {{ note.instrument }} </td>
+        <td> <a routerLink='update/{{note.id}}' class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Edit</a> </td>
+      </tr>
     </div>
-
   </tbody>
 </table>
 
-<a routerLink="/new">New</a>
+<a routerLink="/new" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">New</a>

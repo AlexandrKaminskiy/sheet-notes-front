@@ -1,7 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {INote} from "./models/note";
-import {NotesService} from "./services/notes.service";
-import {Observable} from "rxjs";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',

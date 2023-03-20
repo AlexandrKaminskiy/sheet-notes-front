@@ -1,6 +1,6 @@
 <div class="deleteButton">
   <a class="btn btn-primary btn-lg active"
-     style="margin-left: 50px; background-color: darkred;border-color: darkred;">Delete sheet</a>
+     style="margin-left: 50px; background-color: darkred;border-color: darkred;" (click)="delete()">Delete sheet</a>
 </div>
 
 <div style="margin-left: 20px;">
@@ -25,7 +25,7 @@
         <input type="text" class="form-control" formControlName="description" required="true" placeholder="Description">
       </div>
       <div class="col-7" style="margin-bottom: 20px;">
-        <input type="file" class="form-control" id="file" name="sheet">
+        <input type="file" class="form-control" id="file" (change)="download($event)" name="sheet">
       </div>
       <button type="submit" class="btn btn-primary" [disabled]="!!bpm().errors?.required">Add</button>
     </div>

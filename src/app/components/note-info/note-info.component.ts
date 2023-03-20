@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NotesService} from "../../services/notes.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-note-info',
@@ -15,7 +15,7 @@ export class NoteInfoComponent implements OnInit {
   duration: number
   instrument: string
   description: string
-  constructor(private noteService: NotesService, private activatedRoute: ActivatedRoute) {
+  constructor(private noteService: NotesService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -32,6 +32,8 @@ export class NoteInfoComponent implements OnInit {
       this.description = note.description;
       this.duration = note.duration;
       this.instrument = note.instrument;
+    }, error => {
+      this.router.navigate(['error'])
     })
   }
 

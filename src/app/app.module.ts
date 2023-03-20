@@ -11,6 +11,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {MainComponent} from './components/main/main.component';
 import {UpdateComponent} from './components/update/update.component';
 import { NoteInfoComponent } from './components/note-info/note-info.component';
+import { ErrorComponent } from './components/error/error.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { NoteInfoComponent } from './components/note-info/note-info.component';
     MainComponent,
     UpdateComponent,
     NoteInfoComponent,
+    ErrorComponent,
 
   ],
   imports: [
