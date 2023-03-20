@@ -1,10 +1,24 @@
-<input type="text" placeholder="Name" [(ngModel)]="name" />
-<input type="date" placeholder="Date from" [(ngModel)]="dateFrom" />
-<input type="date" placeholder="Date to" [(ngModel)]="dateTo" />
-<input type="number" placeholder="Complexity" [(ngModel)]="complexity" />
-<input type="text" placeholder="Instrument" [(ngModel)]="instrument" />
-<input type="number" placeholder="Duration from" [(ngModel)]="durationFrom" />
-<input type="number" placeholder="Duration to" [(ngModel)]="durationTo" />
+<div class="form-group mx-sm-3 mb-2">
+  <input type="text" placeholder="Name" [(ngModel)]="name"/>
+</div>
+<div class="form-group mx-sm-3 mb-2">
+  <input type="date" placeholder="Date from" [(ngModel)]="dateFrom"/>
+</div>
+<div class="form-group mx-sm-3 mb-2">
+  <input type="date" placeholder="Date to" [(ngModel)]="dateTo"/>
+</div>
+<div class="form-group mx-sm-3 mb-2">
+  <input type="number" placeholder="Complexity" [(ngModel)]="complexity"/>
+</div>
+<div class="form-group mx-sm-3 mb-2">
+  <input type="text" placeholder="Instrument" [(ngModel)]="instrument"/>
+</div>
+<div class="form-group mx-sm-3 mb-2">
+  <input type="number" placeholder="Duration from" [(ngModel)]="durationFrom"/>
+</div>
+<div class="form-group mx-sm-3 mb-2">
+  <input type="number" placeholder="Duration to" [(ngModel)]="durationTo"/>
+</div>
 
 <table class="table table-bordered">
 
@@ -18,20 +32,22 @@
     <td>Instrument</td>
     <td>Edit</td>
   </tr>
-  </thead >
+  </thead>
   <tbody class="table-light">
-    <div *ngIf="notes$ | async as notes">
-      <tr *ngFor="let note of notes | filterNotes: name : instrument : dateFrom : dateTo : complexity : durationFrom : durationTo;"
-        routerLink="note/{{note.id}}">
-        <td> {{ note.name }} </td>
-        <td> {{ note.bpm }} </td>
-        <td> {{ note.complexity }} </td>
-        <td> {{ note.duration }} </td>
-        <td> {{ note.creation_date }} </td>
-        <td> {{ note.instrument }} </td>
-        <td> <a routerLink='update/{{note.id}}' class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Edit</a> </td>
-      </tr>
-    </div>
+  <div *ngIf="notes$ | async as notes">
+    <tr
+      *ngFor="let note of notes | filterNotes: name : instrument : dateFrom : dateTo : complexity : durationFrom : durationTo;"
+      routerLink="note/{{note.id}}">
+      <td> {{ note.name }} </td>
+      <td> {{ note.bpm }} </td>
+      <td> {{ note.complexity }} </td>
+      <td> {{ note.duration }} </td>
+      <td> {{ note.creation_date }} </td>
+      <td> {{ note.instrument }} </td>
+      <td><a routerLink='update/{{note.id}}' class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Edit</a>
+      </td>
+    </tr>
+  </div>
   </tbody>
 </table>
 
