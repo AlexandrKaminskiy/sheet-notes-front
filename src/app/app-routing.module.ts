@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: '', component: MainComponent},
   { path: 'update/:id', component: UpdateComponent},
   { path: 'note/:id', component: NoteInfoComponent},
-  { path: 'error', component: ErrorComponent}
+  { path: 'error', component: ErrorComponent},
+  { path: '**', component: ErrorComponent}
 ]
 
 @NgModule({
