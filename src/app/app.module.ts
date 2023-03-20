@@ -10,6 +10,7 @@ import {AddComponent} from './components/add/add.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {MainComponent} from './components/main/main.component';
 import {UpdateComponent} from './components/update/update.component';
+import { NoteInfoComponent } from './components/note-info/note-info.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {UpdateComponent} from './components/update/update.component';
     AddComponent,
     MainComponent,
     UpdateComponent,
+    NoteInfoComponent,
 
   ],
   imports: [

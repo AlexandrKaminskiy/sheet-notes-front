@@ -25,7 +25,7 @@
         <input type="text" class="form-control" formControlName="description" required="true" placeholder="Description" value="<%=note.description%>">
       </div>
       <div class="col-7" style="margin-bottom: 20px;">
-        <input type="file" class="form-control" id="file" name="sheet">
+        <input type="file" class="form-control" id="file" (change)="download($event)" name="sheet">
       </div>
       <button type="submit" class="btn btn-primary" [disabled]="!!bpm().errors?.required">Add</button>
     </div>

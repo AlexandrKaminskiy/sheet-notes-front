@@ -8,7 +8,7 @@ export interface INote {
   instrument: string
   description: string
   creation_date: Date
-  filename: string
+  file: FormData
 
 
 

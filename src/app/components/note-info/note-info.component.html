@@ -1,0 +1,27 @@
+<div style="margin-left: 20px;">
+  <h1>{{name}}</h1>
+  <div class="form-row">
+    <div class="col-7" style="margin-bottom: 20px;">
+      <input type="text" class="form-control" value="{{name}}" readonly />
+    </div>
+    <div class="col-7" style="margin-bottom: 20px;">
+      <input type="number"  class="form-control" value="{{bpm}}" readonly />
+    </div>
+    <div class="col-7" style="margin-bottom: 20px;">
+      <input type="number"  class="form-control" value="{{complexity}}" readonly />
+    </div>
+    <div class="col-7" style="margin-bottom: 20px;">
+      <input type="number"  class="form-control" value="{{duration}}" readonly />
+    </div>
+    <div class="col-7" style="margin-bottom: 20px;">
+      <input type="text" class="form-control" value="{{instrument}}" readonly />
+    </div>
+    <div class="col-7" style="margin-bottom: 20px;">
+      <input type="text" class="form-control" value="{{description}}" readonly />
+    </div>
+    <div class="col-7" style="margin-bottom: 20px;">
+      <button type="submit" class="btn btn-primary" (click)="download()">Download</button>
+    </div>
+  </div>
+
+</div>

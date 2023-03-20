@@ -24,7 +24,6 @@
       <app-notes
         *ngFor="let note of notes | filterNotes: name : instrument : dateFrom : dateTo : complexity :  durationFrom : durationTo;
            let i = index" [note]="note">
-
       </app-notes>
     </div>
 

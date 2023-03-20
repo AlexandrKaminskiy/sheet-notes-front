@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {INote} from "../../models/note";
 import {NotesService} from "../../services/notes.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {delay} from "rxjs";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -11,28 +10,37 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class UpdateComponent implements OnInit {
 
-  @Input() isNew: boolean;
   @Input() note: INote;
   id: number
+  file: File;
+
   constructor(private noteService: NotesService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
   form = new FormGroup({
     name: new FormControl<string>('',{nonNullable: true}),
-    bpm: new FormControl<number>(0,[
+    bpm: new FormControl<string>('',[
       Validators.required,
       Validators.min(1)
     ]),
-    complexity: new FormControl<number>(0),
-    duration: new FormControl<number>(0),
+    complexity: new FormControl<string>(''),
+    duration: new FormControl<string>(''),
     instrument: new FormControl<string>(''),
     description: new FormControl<string>('')
   })
 
   submit() {
-    let note = this.form.value as INote;
-    console.log(note)
-    this.noteService.update(note, this.id).subscribe(() => {
+    let formData = new FormData();
+    formData.append('name',  this.form.controls.name.value )
+    formData.append('bpm',  this.form.controls.bpm.value as string )
+    formData.append('complexity',  this.form.controls.complexity.value as string)
+    formData.append('duration',  this.form.controls.duration.value as string)
+    formData.append('instrument',  this.form.controls.instrument.value as string )
+    formData.append('description',  this.form.controls.description.value as string )
+    formData.append('sheet',  this.file)
+
+
+    this.noteService.update(formData, this.id).subscribe(() => {
       this.router.navigate(['']);
     })
   }
@@ -49,10 +57,10 @@ export class UpdateComponent implements OnInit {
 
     this.noteService.getOne(this.id).subscribe((note) => {
       this.form.controls.name.setValue(note.name);
-      this.form.controls.bpm.setValue(note.bpm);
-      this.form.controls.complexity.setValue(note.complexity);
+      this.form.controls.bpm.setValue(note.bpm.toString());
+      this.form.controls.complexity.setValue(note.complexity.toString());
       this.form.controls.description.setValue(note.description);
-      this.form.controls.duration.setValue(note.duration);
+      this.form.controls.duration.setValue(note.duration.toString());
       this.form.controls.instrument.setValue(note.instrument);
     })
   }
