@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {delay, Observable} from "rxjs";
 import {INote} from "../models/note";
 
 @Injectable({
@@ -11,10 +11,18 @@ export class NotesService {
   }
 
   getAll(): Observable<INote[]> {
-    return this.http.get<INote[]>('http://localhost:3000');
+    return this.http.get<INote[]>('http://localhost:3000/notes');
   }
 
-  add() {
-
+  getOne(id: number): Observable<INote> {
+    return this.http.get<INote>(`http://localhost:3000/notes/${id}`)
   }
+  add(note: INote): Observable<INote> {
+    return this.http.post<INote>('http://localhost:3000/notes/new', note);
+  }
+
+  update(note: INote, id: number): Observable<INote> {
+    return this.http.put<INote>(`http://localhost:3000/notes/update/${id}`, note);
+  }
+
 }

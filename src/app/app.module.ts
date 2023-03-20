@@ -6,9 +6,11 @@ import {NoteComponent} from "./components/note/note.component";
 import {HttpClientModule} from "@angular/common/http";
 import {FilterNotesPipe} from './pipes/filter-notes.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { AddComponent } from './components/addupdate/add.component';
+import {AddComponent} from './components/add/add.component';
 import {AppRoutingModule} from "./app-routing.module";
-import { MainComponent } from './components/main/main.component';
+import {MainComponent} from './components/main/main.component';
+import {UpdateComponent} from './components/update/update.component';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { MainComponent } from './components/main/main.component';
     NoteComponent,
     FilterNotesPipe,
     AddComponent,
-    MainComponent
+    MainComponent,
+    UpdateComponent,
+
   ],
   imports: [
     BrowserModule,

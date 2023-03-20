@@ -15,10 +15,9 @@ export class FilterNotesPipe implements PipeTransform {
             durationFrom: number,
             durationTo: number): INote[] {
 
-    console.log(name)
     return notes.filter(p => {
-      return p.name.toLowerCase().includes(name.toLowerCase())
-        && p.instrument.toLowerCase().includes(instrument.toLowerCase())
+      return (!p.name || p.name.toLowerCase().includes(name.toLowerCase()))
+        && (!p.instrument || p.instrument.toLowerCase().includes(instrument.toLowerCase()))
         && (!dateFrom || p.creation_date > dateFrom)
         && (!dateTo || p.creation_date < dateTo)
         && (!complexity || p.complexity == complexity)

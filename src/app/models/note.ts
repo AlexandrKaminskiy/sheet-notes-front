@@ -1,12 +1,15 @@
 export interface INote {
+
+  id: number
+  name: string
   bpm: number
   complexity: number
-  creation_date: Date
-  description: string
   duration: number
-  filename: string
-  id: number
   instrument: string
-  name: string
+  description: string
+  creation_date: Date
+  filename: string
+
+
 
 }

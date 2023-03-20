@@ -5,5 +5,5 @@
   <td> {{ note.duration }} </td>
   <td> {{ note.creation_date }} </td>
   <td> {{ note.instrument }} </td>
-  <td> <a href="/notes/updateForm/<%= note.id %>" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Edit</a> </td>
+  <td> <a routerLink='update/{{note.id}}' class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Edit</a> </td>
 </tr>
