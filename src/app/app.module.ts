@@ -12,6 +12,8 @@ import {MainComponent} from './components/main/main.component';
 import {UpdateComponent} from './components/update/update.component';
 import { NoteInfoComponent } from './components/note-info/note-info.component';
 import { ErrorComponent } from './components/error/error.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { ErrorComponent } from './components/error/error.component';
     UpdateComponent,
     NoteInfoComponent,
     ErrorComponent,
+    LoginComponent,
+    RegisterComponent,
 
   ],
   imports: [
