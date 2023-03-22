@@ -14,6 +14,10 @@ import { NoteInfoComponent } from './components/note-info/note-info.component';
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import {CookieService} from "ngx-cookie-service";
+import {AuthService} from "./services/auth.service";
+import {AuthGuardService} from "./services/auth.guard.service";
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 @NgModule({
@@ -28,6 +32,7 @@ import { RegisterComponent } from './components/register/register.component';
     ErrorComponent,
     LoginComponent,
     RegisterComponent,
+    LogoutComponent,
 
   ],
   imports: [

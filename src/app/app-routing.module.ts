@@ -7,13 +7,16 @@ import {NoteInfoComponent} from "./components/note-info/note-info.component";
 import {ErrorComponent} from "./components/error/error.component";
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {AuthGuardService} from "./services/auth.guard.service";
+import {LogoutComponent} from "./components/logout/logout.component";
 
 const routes: Routes = [
-  { path: 'new', component: AddComponent },
-  { path: '', component: MainComponent },
-  { path: 'update/:id', component: UpdateComponent },
-  { path: 'note/:id', component: NoteInfoComponent },
+  { path: 'new', component: AddComponent, canActivate: [AuthGuardService] },
+  { path: '', component: MainComponent, canActivate: [AuthGuardService] },
+  { path: 'update/:id', component: UpdateComponent, canActivate: [AuthGuardService] },
+  { path: 'note/:id', component: NoteInfoComponent, canActivate: [AuthGuardService] },
   { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'error', component: ErrorComponent },
   { path: '**', component: ErrorComponent }

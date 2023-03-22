@@ -1,12 +1,15 @@
-<div class="form-group mx-sm-3 mb-2">
-  <input type="text" placeholder="Username" [(ngModel)]="username"/>
-</div>
-<div class="form-group mx-sm-3 mb-2">
-  <input type="text" placeholder="Email" [(ngModel)]="email"/>
-</div>
-<div class="form-group mx-sm-3 mb-2">
-  <input type="password" placeholder="Password" [(ngModel)]="password"/>
-</div>
-<div class="col-7" style="margin-bottom: 20px;">
-  <button type="submit" class="btn btn-primary" style="margin-left: 15px;" (click)="tryRegister()">Register</button>
-</div>
+<form (ngSubmit)="tryRegister()" [formGroup]="form">
+  <div class="form-group mx-sm-3 mb-2">
+    <input type="text" class="form-control" formControlName="username" required="true" placeholder="Username">
+  </div>
+  <div class="form-group mx-sm-3 mb-2">
+    <input type="email" class="form-control" formControlName="email" required="true" placeholder="Email">
+  </div>
+  <div class="form-group mx-sm-3 mb-2">
+    <input type="password" class="form-control" formControlName="password" required="true" placeholder="Password">
+  </div>
+
+  <button type="submit" class="btn btn-primary" style="margin-left: 15px;" [disabled]="!!username().errors?.required ||
+    !!email().errors?.required ">Register
+  </button>
+</form>

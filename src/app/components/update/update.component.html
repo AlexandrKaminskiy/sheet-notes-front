@@ -1,8 +1,3 @@
-<div class="deleteButton">
-  <a class="btn btn-primary btn-lg active"
-     style="margin-left: 50px; background-color: darkred;border-color: darkred;" (click)="delete()">Delete sheet</a>
-</div>
-
 <div style="margin-left: 20px;">
   <form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="submit()">
     <div class="form-row">
@@ -10,24 +5,33 @@
         <input type="text" class="form-control" formControlName="name" required="true" placeholder="Name">
       </div>
       <div class="col-7" style="margin-bottom: 20px;">
-        <input type="number"  class="form-control" formControlName="bpm" required="true"  placeholder="Bpm">
+        <input type="number" class="form-control" formControlName="bpm" required="true" placeholder="Bpm">
       </div>
       <div class="col-7" style="margin-bottom: 20px;">
-        <input type="number"  class="form-control" formControlName="complexity" required="true" placeholder="Complexity">
+        <input type="number" class="form-control" formControlName="complexity" required="true" placeholder="Complexity">
       </div>
       <div class="col-7" style="margin-bottom: 20px;">
-        <input type="number"  class="form-control" formControlName="duration" required="true" placeholder="Duration">
+        <input type="number" class="form-control" formControlName="duration" required="true" placeholder="Duration">
       </div>
       <div class="col-7" style="margin-bottom: 20px;">
-        <input type="text" class="form-control" formControlName="instrument" required="true"  placeholder="Instrument">
+        <input type="text" class="form-control" formControlName="instrument" required="true" placeholder="Instrument">
       </div>
       <div class="col-7" style="margin-bottom: 20px;">
         <input type="text" class="form-control" formControlName="description" required="true" placeholder="Description">
       </div>
       <div class="col-7" style="margin-bottom: 20px;">
-        <input type="file" class="form-control" id="file" (change)="download($event)" name="sheet">
+        <input type="file" accept="application/pdf" class="form-control" id="file" (change)="download($event)"
+               name="sheet">
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!!bpm().errors?.required">Add</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!!name().errors?.required || !!bpm().errors?.required ||
+      !!complexity().errors?.required || !!description().errors?.required || !!duration().errors?.required || !!instrument().errors?.required">
+        Update
+      </button>
+
+      <a class="btn btn-primary btn-lg active"
+         style="margin-left: 50px; background-color: darkred;border-color: darkred; margin-left: 40px"
+         (click)="delete()">Delete sheet</a>
+
     </div>
   </form>
 </div>

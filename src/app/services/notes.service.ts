@@ -8,28 +8,30 @@ import {Router} from "@angular/router";
   providedIn: 'root'
 })
 export class NotesService {
+
+  private options = {withCredentials: true}
   constructor(private http: HttpClient, private router: Router) {
   }
 
   getAll(): Observable<INote[]> {
-    return this.http.get<INote[]>('http://localhost:3000/notes').pipe(source => {
+    return this.http.get<INote[]>('http://localhost:3000/notes', this.options).pipe(source => {
       return source;
     });
   }
 
   getOne(id: number): Observable<INote> {
-    return this.http.get<INote>(`http://localhost:3000/notes/${id}`)
+    return this.http.get<INote>(`http://localhost:3000/notes/${id}`, this.options)
   }
   add(formData: FormData): Observable<INote> {
-    return this.http.post<INote>('http://localhost:3000/notes/new', formData);
+    return this.http.post<INote>('http://localhost:3000/notes/new', formData, this.options);
   }
 
   update(formData: FormData, id: number): Observable<INote> {
-    return this.http.put<INote>(`http://localhost:3000/notes/update/${id}`, formData);
+    return this.http.put<INote>(`http://localhost:3000/notes/update/${id}`, formData, this.options);
   }
 
   getFile(id: number) {
-    return this.http.get(`http://localhost:3000/notes/file/${id}`, {responseType: 'blob', observe: 'response'})
+    return this.http.get(`http://localhost:3000/notes/file/${id}`, {responseType: 'blob', observe: 'response', withCredentials: true})
       .subscribe((data) => {
 
         this.downloadFile(data.body as Blob);
@@ -45,6 +47,6 @@ export class NotesService {
   }
 
   delete(id: number) : Observable<Response>{
-    return this.http.delete<Response>(`http://localhost:3000/notes/delete/${id}`);
+    return this.http.delete<Response>(`http://localhost:3000/notes/delete/${id}`, this.options);
   }
 }

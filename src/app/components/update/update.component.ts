@@ -18,21 +18,55 @@ export class UpdateComponent implements OnInit {
   }
 
   form = new FormGroup({
-    name: new FormControl<string>('',{nonNullable: true}),
+    name: new FormControl<string>('',[
+      Validators.required,
+      Validators.min(1)
+    ]),
     bpm: new FormControl<string>('',[
       Validators.required,
       Validators.min(1)
     ]),
-    complexity: new FormControl<string>(''),
-    duration: new FormControl<string>(''),
-    instrument: new FormControl<string>(''),
-    description: new FormControl<string>('')
+    complexity: new FormControl<string>('',[
+      Validators.required,
+      Validators.min(1)
+    ]),
+    duration: new FormControl<string>('',[
+      Validators.required,
+      Validators.min(1)
+    ]),
+    instrument: new FormControl<string>('',[
+      Validators.required,
+      Validators.min(1)
+    ]),
+    description: new FormControl<string>('',[
+      Validators.required,
+      Validators.min(1)
+    ]),
   })
+
+  name() {
+    return this.form.controls.name as FormControl;
+  }
+  bpm() {
+    return this.form.controls.bpm as FormControl;
+  }
+  complexity() {
+    return this.form.controls.complexity as FormControl;
+  }
+  duration() {
+    return this.form.controls.duration as FormControl;
+  }
+  instrument() {
+    return this.form.controls.instrument as FormControl;
+  }
+  description() {
+    return this.form.controls.description as FormControl;
+  }
 
   submit() {
     let formData = new FormData();
     console.log(this.file)
-    formData.append('name',  this.form.controls.name.value )
+    formData.append('name',  this.form.controls.name.value as string)
     formData.append('bpm',  this.form.controls.bpm.value as string )
     formData.append('complexity',  this.form.controls.complexity.value as string)
     formData.append('duration',  this.form.controls.duration.value as string)
@@ -49,10 +83,6 @@ export class UpdateComponent implements OnInit {
     }, error => {
       this.router.navigate(['error'])
     })
-  }
-
-  bpm() {
-    return this.form.controls.bpm as FormControl;
   }
 
   ngOnInit(): void {

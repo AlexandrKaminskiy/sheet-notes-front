@@ -32,10 +32,8 @@
     <td>Edit</td>
   </tr>
   </thead>
-  <tbody class="table-light">
-  <div *ngIf="notes$ | async as notes">
-    <tr
-      *ngFor="let note of notes | filterNotes: name : instrument : dateFrom : dateTo : complexity : durationFrom : durationTo;"
+  <tbody class="table-light" *ngIf="notes$ | async as notes">
+    <tr *ngFor="let note of notes | filterNotes: name : instrument : dateFrom : dateTo : complexity : durationFrom : durationTo;"
       routerLink="note/{{note.id}}">
       <td> {{ note.name }} </td>
       <td> {{ note.bpm }} </td>
@@ -46,7 +44,6 @@
       <td><a routerLink='update/{{note.id}}' class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Edit</a>
       </td>
     </tr>
-  </div>
   </tbody>
 </table>
 
