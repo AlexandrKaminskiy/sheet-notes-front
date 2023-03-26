@@ -9,15 +9,17 @@ import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {AuthGuardService} from "./services/auth.guard.service";
 import {LogoutComponent} from "./components/logout/logout.component";
+import {SockettestComponent} from "./components/sockettest/sockettest.component";
 
 const routes: Routes = [
   { path: 'new', component: AddComponent, canActivate: [AuthGuardService] },
-  { path: '', component: MainComponent, canActivate: [AuthGuardService] },
+  { path: '', component: MainComponent},
   { path: 'update/:id', component: UpdateComponent, canActivate: [AuthGuardService] },
   { path: 'note/:id', component: NoteInfoComponent, canActivate: [AuthGuardService] },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'socket', component: SockettestComponent },
   { path: 'error', component: ErrorComponent },
   { path: '**', component: ErrorComponent }
 ]

@@ -18,6 +18,9 @@ import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "./services/auth.service";
 import {AuthGuardService} from "./services/auth.guard.service";
 import { LogoutComponent } from './components/logout/logout.component';
+import { SockettestComponent } from './components/sockettest/sockettest.component';
+import {Socket} from "socket.io-client";
+import {SocketIoModule} from "ngx-socket-io";
 
 
 @NgModule({
@@ -33,6 +36,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
+    SockettestComponent,
 
   ],
   imports: [
@@ -40,7 +44,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SocketIoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

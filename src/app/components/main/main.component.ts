@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
 import {INote} from "../../models/note";
 import {NotesService} from "../../services/notes.service";
+import {SocketService} from "../../services/socket.service";
+import {SocketEndpoints} from "../../services/socket.endpoints";
 
 @Component({
   selector: 'app-main',
@@ -20,12 +22,17 @@ export class MainComponent implements OnInit{
 
   notes$: Observable<INote[]>
 
-  constructor(private noteService: NotesService) {
+  constructor(private noteService: NotesService, private socketService: SocketService) {
+    this.socketService.emitToServer(SocketEndpoints.ALL, {})
   }
 
 
   ngOnInit(): void {
-    this.notes$ = this.noteService.getAll();
+    this.noteService.listenToServer(SocketEndpoints.ALL).pipe((change) => {
+      console.log('receiving all...')
+      this.notes$ = change;
+      return change;
+    })
   }
 
 }

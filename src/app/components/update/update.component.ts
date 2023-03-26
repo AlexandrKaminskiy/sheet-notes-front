@@ -3,6 +3,7 @@ import {INote} from "../../models/note";
 import {NotesService} from "../../services/notes.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {SocketEndpoints} from "../../services/socket.endpoints";
 
 @Component({
   selector: 'app-update',
@@ -15,6 +16,7 @@ export class UpdateComponent implements OnInit {
   file: File;
 
   constructor(private noteService: NotesService, private activatedRoute: ActivatedRoute, private router: Router) {
+
   }
 
   form = new FormGroup({
@@ -64,25 +66,22 @@ export class UpdateComponent implements OnInit {
   }
 
   submit() {
-    let formData = new FormData();
-    console.log(this.file)
-    formData.append('name',  this.form.controls.name.value as string)
-    formData.append('bpm',  this.form.controls.bpm.value as string )
-    formData.append('complexity',  this.form.controls.complexity.value as string)
-    formData.append('duration',  this.form.controls.duration.value as string)
-    formData.append('instrument',  this.form.controls.instrument.value as string )
-    formData.append('description',  this.form.controls.description.value as string )
-    if (this.file !== undefined) {
-      formData.append('file', this.file.name )
+    console.log(this.form.value)
+
+    let dto = {
+      'id' : this.id,
+      'name' : this.form.controls.name.value,
+      'bpm' : this.form.controls.bpm.value,
+      'complexity' :  this.form.controls.complexity.value,
+      'duration' :  this.form.controls.duration.value,
+      'instrument' :  this.form.controls.instrument.value,
+      'description' :  this.form.controls.description.value,
+      'sheet' :  this.file
     }
-    formData.append('sheet',  this.file)
 
+    this.noteService.update(dto);
+    this.router.navigate(['/'])
 
-    this.noteService.update(formData, this.id).subscribe(() => {
-      this.router.navigate(['']);
-    }, error => {
-      this.router.navigate(['error'])
-    })
   }
 
   ngOnInit(): void {
@@ -90,8 +89,8 @@ export class UpdateComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
        this.id = params['id']
     });
-
-    this.noteService.getOne(this.id).subscribe((note) => {
+    this.noteService.getOne(this.id)
+    this.noteService.listenToServer(SocketEndpoints.NOTE).subscribe((note) => {
       this.form.controls.name.setValue(note.name);
       this.form.controls.bpm.setValue(note.bpm.toString());
       this.form.controls.complexity.setValue(note.complexity.toString());
@@ -106,12 +105,8 @@ export class UpdateComponent implements OnInit {
   }
 
   delete() {
-    this.noteService.delete(this.id).subscribe((resp) => {
-
-    },error => {
-      this.router.navigate(['error'])
-    });
-    this.router.navigate(['']);
+    this.noteService.delete(this.id);
+    this.router.navigate(['/'])
   }
 }
 
