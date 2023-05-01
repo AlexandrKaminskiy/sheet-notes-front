@@ -33,7 +33,7 @@
   </tr>
   </thead>
   <tbody class="table-light" *ngIf="notes$ | async as notes">
-    <tr *ngFor="let note of notes | filterNotes: name : instrument : dateFrom : dateTo : complexity : durationFrom : durationTo;"
+    <tr *ngFor="let note of notes.data.getNotes | filterNotes: name : instrument : dateFrom : dateTo : complexity : durationFrom : durationTo;"
       routerLink="note/{{note.id}}">
       <td> {{ note.name }} </td>
       <td> {{ note.bpm }} </td>

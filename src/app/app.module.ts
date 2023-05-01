@@ -18,6 +18,7 @@ import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "./services/auth.service";
 import {AuthGuardService} from "./services/auth.guard.service";
 import { LogoutComponent } from './components/logout/logout.component';
+import { GraphQLModule } from './graphql.module';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    GraphQLModule
   ],
   providers: [],
   bootstrap: [AppComponent]

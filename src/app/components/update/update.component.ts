@@ -77,7 +77,6 @@ export class UpdateComponent implements OnInit {
     }
     formData.append('sheet',  this.file)
 
-
     this.noteService.update(formData, this.id).subscribe(() => {
       this.router.navigate(['']);
     }, error => {
@@ -91,7 +90,8 @@ export class UpdateComponent implements OnInit {
        this.id = params['id']
     });
 
-    this.noteService.getOne(this.id).subscribe((note) => {
+    this.noteService.getOne(this.id).subscribe((noteData) => {
+      let note = noteData.data.getNote;
       this.form.controls.name.setValue(note.name);
       this.form.controls.bpm.setValue(note.bpm.toString());
       this.form.controls.complexity.setValue(note.complexity.toString());
@@ -107,7 +107,7 @@ export class UpdateComponent implements OnInit {
 
   delete() {
     this.noteService.delete(this.id).subscribe((resp) => {
-
+      console.log(resp)
     },error => {
       this.router.navigate(['error'])
     });

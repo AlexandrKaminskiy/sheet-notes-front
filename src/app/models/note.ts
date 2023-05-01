@@ -10,6 +10,4 @@ export interface INote {
   creation_date: Date
   file: FormData
 
-
-
 }

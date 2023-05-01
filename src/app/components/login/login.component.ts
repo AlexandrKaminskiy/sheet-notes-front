@@ -12,7 +12,8 @@ export class LoginComponent {
   }
   username: string;
   password: string;
-
+  error: true
+  errorMessage: "Incorrect credentials"
   login() {
     this.authService.login(this.username, this.password);
   }

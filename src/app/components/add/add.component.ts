@@ -71,7 +71,15 @@ export class AddComponent implements OnInit{
     formData.append('description',  this.form.controls.description.value as string )
     formData.append('sheet',  this.file)
 
-    this.noteService.add(formData).subscribe(() => {
+    let data = {
+      'name' : this.form.controls.name.value,
+      'bpm' : this.form.controls.bpm.value,
+      'complexity' :  this.form.controls.complexity.value,
+      'duration' :  this.form.controls.duration.value,
+      'instrument' :  this.form.controls.instrument.value,
+      'description' :  this.form.controls.description.value,
+    }
+    this.noteService.add(data).subscribe(() => {
       this.router.navigate(['']);
     }, error => {
       this.router.navigate(['error'])

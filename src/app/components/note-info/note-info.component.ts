@@ -21,11 +21,12 @@ export class NoteInfoComponent implements OnInit {
   ngOnInit(): void {
     this.id = 0;
     this.activatedRoute.params.subscribe(params => {
+
       this.id = params['id']
     });
 
-    this.noteService.getOne(this.id).subscribe((note) => {
-      this.id = note.id;
+    this.noteService.getOne(this.id).subscribe((noteData) => {
+      let note = noteData.data.getNote;
       this.name = note.name;
       this.bpm = note.bpm;
       this.complexity = note.complexity;
